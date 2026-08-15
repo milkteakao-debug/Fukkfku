@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>YouTube 播放器</title>
+<style>
+body{
+    font-family:Arial;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+input{
+    width:70%;
+    padding:10px;
+    border-radius:8px;
+}
+button{
+    padding:10px 20px;
+    margin-left:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+iframe{
+    margin-top:20px;
+    width:90%;
+    max-width:900px;
+    height:500px;
+    border:none;
+}
+</style>
+</head>
+<body>
 
+<h2>YouTube 播放器</h2>
+
+<input id="url" placeholder="貼上 YouTube 網址">
+<button onclick="play()">播放</button>
+
+<br>
+
+<iframe id="player" allowfullscreen></iframe>
+
+<script>
+function play(){
+    const url=document.getElementById("url").value;
+
+    let id="";
+
+    if(url.includes("watch?v=")){
+        id=url.split("watch?v=")[1].split("&")[0];
+    }else if(url.includes("youtu.be/")){
+        id=url.split("youtu.be/")[1].split("?")[0];
+    }
+
+    if(id){
+        document.getElementById("player").src=
+        "https://www.youtube.com/embed/"+id;
+    }else{
+        alert("請輸入正確的 YouTube 網址");
+    }
+}
+</script>
+
+</body>
+</html>
